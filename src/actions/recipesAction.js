@@ -18,15 +18,3 @@ export let startGetRecipes = () => {
             })
     };
 };
-
-export let getIngredientAutoComplete = (text) => {
-    return dispatch => {
-        axios.get('http://localhost:3000/ingredients/auto/' + text)
-            .then(function (response) {
-                dispatch(getRecipes(response.data.result)); 
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    };
-};

@@ -8,7 +8,7 @@ export default () => {
   let store = createStore(
     combineReducers({
       recipes: recipeReducer,
-      ingredients: foundIngredientsReducer,
+      foundIngredients: foundIngredientsReducer,
       temporaryRecipe: temporaryRecipeReducer
     }),
     applyMiddleware(thunk)

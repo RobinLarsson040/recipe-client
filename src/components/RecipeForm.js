@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Input, Select, Button, InputNumber, Icon } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import IngredientSearch from './IngredientSearch'
-import { getIngredientAutoComplete } from '../actions/ingredientsAction'
+import { getIngredientAutoComplete } from '../actions/foundIngredientsAction'
+import IngredientsContainer from './IngredientsContainer';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -23,7 +23,7 @@ class RecipeForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form onSubmit={this.handleSubmit}>
+        <Form className="section" onSubmit={this.handleSubmit}>
           <FormItem >
             {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Receptet måste ha ett namn' }],
@@ -47,7 +47,7 @@ class RecipeForm extends Component {
             })(
               <TextArea onChange={this.onDescriptionChange}
                 style={{ width: 300 }}
-                placeholder="Description of the recipe" autosize={{ minRows: 0, maxRows: 6 }} />
+                placeholder="Description of the recipe" autosize={{ minRows: 4, maxRows: 6 }} />
             )}
           </FormItem>
           {<FormItem>
@@ -64,12 +64,11 @@ class RecipeForm extends Component {
               <Input style={{ width: 300 }} prefix={<Icon type="image" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Image URL" />
             )}
           </FormItem>
-
-
           <FormItem>
           <Button type="primary" htmlType="submit">Skapa recept</Button>
           </FormItem>
         </Form>
+        <IngredientsContainer/>
       </div>
     )
   }

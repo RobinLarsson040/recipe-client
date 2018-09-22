@@ -1,36 +1,140 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { List, Input, Select, Button, InputNumber, Alert } from "antd";
+import { List, Input, Form, Button, InputNumber, Table } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { Menu, Dropdown, Icon } from "antd";
-import { getIngredientAutoComplete } from '../actions/ingredientsAction'
+import { Select, Icon } from "antd";
+import { getIngredientAutoComplete, clearIngredients } from '../actions/foundIngredientsAction'
+import { addIngredient } from '../actions/temporaryRecipeAction'
+
+const FormItem = Form.Item;
+const Option = Select.Option;
+const columns = [{
+  title: 'Namn',
+  dataIndex: 'Namn',
+}]
 
 class IngredientSearch extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
+    this.ingredientClicked = false;
     this.state = {
-      ingredients: []
+      clickedIngredient: {},
+      searchText: ''
     }
   }
 
-   onChange = (e)=> {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.saveIngredientToTemporaryRecipe(values);
+        this.props.form.resetFields();
+      }
+    });
+  }
+
+  onChange = (e) => {
     e.persist();
     let text = e.target.value;
-    if(text.length > 1){
+    this.setState({
+      searchText: text
+    })
+    if (text.length > 1) {
       this.props.getIngredientAutoComplete(text)
+    } else {
+      this.props.clearIngredients()
     }
+  }
+
+  saveIngredientToTemporaryRecipe = (values) => {
+    let clickedIngredient = this.state.clickedIngredient;
+    let per100g = {
+      "Protein": 0,
+      "Kolhydrater": 0,
+      "Fett": 0,
+      "Energi (kcal)": 0,
+      "Salt": 0,
+      "Socker totalt": 0
+    }
+    clickedIngredient.Naringsvarden.Naringsvarde.forEach((item) => {
+      if (item.Namn in per100g) {
+        per100g[item.Namn] = item.Varde;
+      }
+    })
+    let ingredient = {
+      ...values,
+      per100g: per100g
+    }
+
+    this.props.addIngredient(ingredient);
+    this.setState({
+      clickedIngredient: {}
+    })
+
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div>
-     <Input onChange={this.onChange} style={{ width: 300 }} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Sök på ingrediens" />
-     <List
-      size="small"
-      dataSource={this.props.foundIngredients}
-      renderItem={item => (<List.Item>{item.Namn}</List.Item>)}
-    />
+      <div className="section">
+        <Input value={this.state.searchText} onChange={this.onChange} style={{ width: 200 }} prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Sök på ingrediens" />
+        {this.props.foundIngredients.length > 0 && <Table columns={columns} dataSource={this.props.foundIngredients} size="small"
+          onRow={(record) => {
+            return {
+              onClick: () => {
+                this.props.form.setFieldsValue({
+                  name: record.Namn
+                })
+                this.setState({
+                  clickedIngredient: record,
+                  searchText: ''
+                })
+                this.props.clearIngredients()
+              },
+            };
+
+          }} />}
+        <Form onSubmit={this.handleSubmit}>
+          <FormItem label="Namn" >
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: 'Sök efter ingrediens i sökfältet' }],
+            })(
+              <Input style={{ width: 340 }} readOnly placeholder={"Använd sökfältet ovan för att hitta ingrediens"}></Input>
+            )}
+          </FormItem>
+          <FormItem label="Antal" >
+            {getFieldDecorator('units', {
+              rules: [{ required: true, message: 'Ange antal, exempel 4' }],
+            })(
+              <InputNumber min={1} style={{ width: 50 }} prefix={<Icon type="number" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+            )}
+          </FormItem>
+          <FormItem label="Enhet">
+            {getFieldDecorator('measuringUnit', {
+              rules: [{ required: true, message: 'Ange måttenhet, exempel st/liter/gram' }],
+            })(
+              <Select style={{ width: 150 }} placeholder="Select category">
+                <Option value="st">st</Option>
+                <Option value="liter">liter</Option>
+                <Option value="dl">dl</Option>
+                <Option value="cl">cl</Option>
+                <Option value="ml">ml</Option>
+              </Select>
+            )}
+          </FormItem>
+          <FormItem label="Gram/enhet">
+            {getFieldDecorator('unitEquivalentInGrams', {
+              rules: [{ required: true, message: 'Ange hur många gram varje enhet väger' }],
+            })(
+              <InputNumber style={{ width: 80 }} />
+            )}
+          </FormItem>
+          <FormItem>
+            <Button type="primary" htmlType="submit">Lägg till ingrediens</Button>
+          </FormItem>
+        </Form>
+
       </div>
     )
   }
@@ -42,8 +146,12 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = {
-  getIngredientAutoComplete
+  getIngredientAutoComplete,
+  clearIngredients,
+  addIngredient
 }
 
+const WrappedIngredientSearchFOrm = Form.create({})(IngredientSearch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(IngredientSearch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedIngredientSearchFOrm)

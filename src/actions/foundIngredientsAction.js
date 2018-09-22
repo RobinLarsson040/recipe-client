@@ -3,8 +3,14 @@ import axios from 'axios'
 
 export let setIngredients = foundIngredients => {
     return {
-        type: "SET_INGREDIENTS",
+        type: "SET_FOUND_INGREDIENTS",
         foundIngredients
+    };
+};
+
+export let clearIngredients = () => {
+    return {
+        type: "EMPTY_FOUND_INGREDIENTS",
     };
 };
 
