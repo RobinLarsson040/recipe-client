@@ -28,3 +28,9 @@ export let addFormValues = formValues => {
         formValues
     };
 };
+
+export let clearTemporaryRecipe = () => {
+    return {
+        type: "CLEAR_RECIPE"
+    };
+};

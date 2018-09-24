@@ -77,9 +77,9 @@ class IngredientSearch extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="section">
-      <h2>Sök ingrediens</h2>
+        <h2>Sök ingrediens</h2>
         <Input value={this.state.searchText} onChange={this.onChange} style={{ width: 200 }} prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Sök på ingrediens" />
-        {this.props.foundIngredients.length > 0 && <Table  rowKey={record => record.Namn} columns={columns} dataSource={this.props.foundIngredients} size="small"
+        {this.props.foundIngredients.length > 0 && <Table rowKey={record => record.Namn} columns={columns} dataSource={this.props.foundIngredients} size="small"
           onRow={(record) => {
             return {
               onClick: () => {
@@ -93,24 +93,23 @@ class IngredientSearch extends Component {
                 this.props.clearIngredients()
               },
             };
-
           }} />}
         <Form onSubmit={this.handleSubmit}>
-          <FormItem label="Namn" >
+          <FormItem style={{ padding: 1, margin: 1 }} label="Namn" >
             {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Sök efter ingrediens i sökfältet' }],
             })(
               <Input style={{ width: 340 }} readOnly placeholder={"Använd sökfältet ovan för att hitta ingrediens"}></Input>
             )}
           </FormItem>
-          <FormItem label="Antal" >
+          <FormItem style={{ padding: 1, margin: 1 }} label="Antal" >
             {getFieldDecorator('units', {
               rules: [{ required: true, message: 'Ange antal, exempel 4' }],
             })(
               <InputNumber min={1} style={{ width: 50 }} prefix={<Icon type="number" style={{ color: 'rgba(0,0,0,.25)' }} />} />
             )}
           </FormItem>
-          <FormItem label="Enhet">
+          <FormItem style={{ padding: 1, margin: 1 }} label="Enhet">
             {getFieldDecorator('measuringUnit', {
               rules: [{ required: true, message: 'Ange måttenhet, exempel st/liter/gram' }],
             })(
@@ -123,14 +122,14 @@ class IngredientSearch extends Component {
               </Select>
             )}
           </FormItem>
-          <FormItem label="Gram/enhet">
+          <FormItem style={{ padding: 1, margin: 1 }} label="Gram/enhet">
             {getFieldDecorator('unitEquivalentInGrams', {
               rules: [{ required: true, message: 'Ange hur många gram varje enhet väger' }],
             })(
-              <InputNumber style={{ width: 80 }} />
+              <InputNumber min={1} style={{ width: 80 }} />
             )}
           </FormItem>
-          <FormItem>
+          <FormItem style={{ padding: 1, margin: 1 }}>
             <Button type="primary" htmlType="submit">Lägg till ingrediens</Button>
           </FormItem>
         </Form>

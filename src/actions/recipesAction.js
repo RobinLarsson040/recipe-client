@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { clearTemporaryRecipe } from './temporaryRecipeAction';
 
 export let getRecipes = recipes => {
     return {
@@ -18,3 +19,17 @@ export let startGetRecipes = () => {
             })
     };
 };
+
+export let saveRecipe = (recipe) => {
+    console.log('recipe data from save recipe method', recipe)
+    return dispatch => {
+        axios.post('http://localhost:3000/recipes', recipe)
+            .then(function (response) {
+                clearTemporaryRecipe();
+                startGetRecipes();
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
+}

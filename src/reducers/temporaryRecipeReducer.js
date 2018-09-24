@@ -14,11 +14,11 @@ let temporaryRecipeReducer = (state = defaultTemporaryRecipeState, action) => {
     case "ADD_FORM_VALUES":
       return {
         ...state,
-        name: action.name,
-        category: action.category,
-        description: action.description,
-        persons: action.persons,
-        imgUrl: action.imgUrl
+        name: action.formValues.name,
+        category: action.formValues.category,
+        description: action.formValues.description,
+        persons: action.formValues.persons,
+        imgUrl: action.formValues.imgUrl
       };
     case "ADD_INGREDIENT":
       return {
@@ -35,6 +35,9 @@ let temporaryRecipeReducer = (state = defaultTemporaryRecipeState, action) => {
         ...state,
         instructions: [...state.instructions, action.instruction]
       }
+      case "CLEAR_RECIPE":
+      return defaultTemporaryRecipeState
+
     /*     case "REMOVE_INSTRUCTION":
           return {
             ...state,

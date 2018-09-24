@@ -17,3 +17,7 @@
     margin: 8px;
   }
 
+  .myFormItem.ant-FormItem {
+    margin: 1px;
+    padding: 1px;
+  }
