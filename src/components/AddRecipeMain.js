@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import RecipeForm from './RecipeForm'
 import IngrentSearch from './IngredientSearch'
+import Recipe from './Recipe'
 
 class AddRecipeMain extends Component {
 
@@ -11,8 +11,8 @@ class AddRecipeMain extends Component {
 
     render() {
         return (
-            <div className="addRecipeMain">
-                <RecipeForm />
+            <div className="flex-row">
+                <Recipe />
                 <IngrentSearch />
             </div>
         )
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = {
-  
+
 }
 
 

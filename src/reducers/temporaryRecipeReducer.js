@@ -25,21 +25,21 @@ let temporaryRecipeReducer = (state = defaultTemporaryRecipeState, action) => {
         ...state,
         ingredients: [...state.ingredients, action.ingredient]
       }
-/*     case "REMOVE_INGREDIENT":
+    case "REMOVE_INGREDIENT":
       return {
         ...state,
-        ingredients: [...state.ingredients, action.ingredient]
-      } */
+        ingredients: state.ingredients.filter(item => item.name !== action.ingredient.name)
+      }
     case "ADD_INSTRUCTION":
       return {
         ...state,
         instructions: [...state.instructions, action.instruction]
       }
-/*     case "REMOVE_INSTRUCTION":
-      return {
-        ...state,
-        instructions: [...state.instructions, action.instruction]
-      } */
+    /*     case "REMOVE_INSTRUCTION":
+          return {
+            ...state,
+            instructions: [...state.instructions, action.instruction]
+          } */
     default:
       return state;
   }

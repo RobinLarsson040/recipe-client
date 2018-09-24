@@ -10,7 +10,7 @@ const Option = Select.Option;
 
 class RecipeForm extends Component {
 
-   handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -23,52 +23,52 @@ class RecipeForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <Form className="section" onSubmit={this.handleSubmit}>
-          <FormItem >
+        <h2>Recept information</h2>
+        <Form onSubmit={this.handleSubmit}>
+          <FormItem label="Namn" >
             {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Receptet måste ha ett namn' }],
             })(
-              <Input style={{ width: 300 }} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Recipe name" />
+              <Input style={{ width: 300 }} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />
             )}
           </FormItem>
-          <FormItem>
+          <FormItem label="Kategori" >
             {getFieldDecorator('category', {
               rules: [{ required: true, message: 'Ange kategori' }],
             })(
-              <Select style={{ width: 150 }} placeholder="Select category">
+              <Select style={{ width: 150 }}>
                 <Option value="dinner">Dinner</Option>
                 <Option value="dessert">Dessert</Option>
               </Select>
             )}
           </FormItem>
-          <FormItem>
+          <FormItem label="Beskrivning" >
             {getFieldDecorator('description', {
               rules: [{ required: true, message: 'Ange recept beskrivning' }],
             })(
               <TextArea onChange={this.onDescriptionChange}
                 style={{ width: 300 }}
-                placeholder="Description of the recipe" autosize={{ minRows: 4, maxRows: 6 }} />
+                autosize={{ minRows: 4, maxRows: 6 }} />
             )}
           </FormItem>
-          {<FormItem>
+          {<FormItem label="Antal personer" >
             {getFieldDecorator('persons', {
               rules: [{ required: true, message: 'Ange för hur många personer detta receptet är gjort för' }],
             })(
-              <InputNumber style={{ width: 120 }} placeholder="antal personer" min={1} max={10} />
+              <InputNumber style={{ width: 120 }} min={1} max={10} />
             )}
           </FormItem>}
-          <FormItem>
+          <FormItem label="url till bild" >
             {getFieldDecorator('imageUrl', {
               rules: [{ required: false }],
             })(
-              <Input style={{ width: 300 }} prefix={<Icon type="image" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Image URL" />
+              <Input style={{ width: 300 }} prefix={<Icon type="image" style={{ color: 'rgba(0,0,0,.25)' }} />} />
             )}
           </FormItem>
           <FormItem>
-          <Button type="primary" htmlType="submit">Skapa recept</Button>
+            <Button type="primary" htmlType="submit">Skapa recept</Button>
           </FormItem>
         </Form>
-        <IngredientsContainer/>
       </div>
     )
   }

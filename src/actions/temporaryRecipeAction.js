@@ -8,6 +8,13 @@ export let addIngredient = ingredient => {
     };
 };
 
+export let removeIngredient = ingredient => {
+    return {
+        type: "REMOVE_INGREDIENT",
+        ingredient
+    };
+};
+
 export let addInstruction = instruction => {
     return {
         type: "ADD_INSTRUCTION",

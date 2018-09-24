@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { List, Input, Form, Button, InputNumber, Table } from "antd";
-import TextArea from "antd/lib/input/TextArea";
+import { Input, Form, Button, InputNumber, Table } from "antd";
 import { Select, Icon } from "antd";
 import { getIngredientAutoComplete, clearIngredients } from '../actions/foundIngredientsAction'
 import { addIngredient } from '../actions/temporaryRecipeAction'
@@ -78,8 +77,9 @@ class IngredientSearch extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="section">
+      <h2>Sök ingrediens</h2>
         <Input value={this.state.searchText} onChange={this.onChange} style={{ width: 200 }} prefix={<Icon type="search" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Sök på ingrediens" />
-        {this.props.foundIngredients.length > 0 && <Table columns={columns} dataSource={this.props.foundIngredients} size="small"
+        {this.props.foundIngredients.length > 0 && <Table  rowKey={record => record.Namn} columns={columns} dataSource={this.props.foundIngredients} size="small"
           onRow={(record) => {
             return {
               onClick: () => {
@@ -114,7 +114,7 @@ class IngredientSearch extends Component {
             {getFieldDecorator('measuringUnit', {
               rules: [{ required: true, message: 'Ange måttenhet, exempel st/liter/gram' }],
             })(
-              <Select style={{ width: 150 }} placeholder="Select category">
+              <Select style={{ width: 150 }}>
                 <Option value="st">st</Option>
                 <Option value="liter">liter</Option>
                 <Option value="dl">dl</Option>
