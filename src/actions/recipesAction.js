@@ -12,7 +12,7 @@ export let startGetRecipes = () => {
     return dispatch => {
         axios.get('http://localhost:3000/recipes')
             .then(function (response) {
-                dispatch(getRecipes(response.data.result)); 
+                dispatch(getRecipes(response.data.result));
             })
             .catch(function (error) {
                 console.log(error);
@@ -21,15 +21,21 @@ export let startGetRecipes = () => {
 };
 
 export let saveRecipe = (recipe) => {
-    console.log('recipe data from save recipe method', recipe)
     return dispatch => {
-        axios.post('http://localhost:3000/recipes', recipe)
-            .then(function (response) {
-                clearTemporaryRecipe();
-                startGetRecipes();
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        return new Promise((resolve, reject) => {
+            axios.post('http://localhost:3000/recipes', recipe)
+                .then(function (response) {
+                    if (response.data === "success") {
+                        dispatch(clearTemporaryRecipe());
+                        dispatch(startGetRecipes());
+                        resolve("Receptet sparat!")
+                    } else {
+                        reject("Namnet på receptet existerar redan!")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        })
     };
 }

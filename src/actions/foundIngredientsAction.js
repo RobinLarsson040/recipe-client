@@ -14,15 +14,27 @@ export let clearIngredients = () => {
     };
 };
 
-
 export let getIngredientAutoComplete = (text) => {
     return dispatch => {
-        axios.get('http://localhost:3000/ingredients/auto/' + text)
+        axios.get('http://localhost:3000/ingredients/auto/' + encodeURI(text) )
             .then(function (response) {
-                dispatch(setIngredients(response.data.result)); 
+                dispatch(setIngredients(response.data.result));
             })
             .catch(function (error) {
                 console.log(error);
             })
     };
+};
+
+export let getIngredientByName = (name) => {
+    return new Promise((resolve, reject) => {
+        axios.get('http://localhost:3000/ingredients/' + encodeURI(name) )
+            .then(function (response) {
+                console.log(response)
+                resolve(response.data.result)
+            })
+            .catch(function (error) {
+                reject(error)
+            })
+    })
 };

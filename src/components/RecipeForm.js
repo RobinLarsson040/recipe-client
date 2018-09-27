@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Form, Input, Select, Button, InputNumber, Icon, Alert } from "antd";
+import { Form, Input, Select, Button, InputNumber, Icon, Alert, Modal } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { getIngredientAutoComplete } from '../actions/foundIngredientsAction'
-import {addFormValues} from '../actions/temporaryRecipeAction'
-import {saveRecipe} from '../actions/recipesAction'
+import { addFormValues } from '../actions/temporaryRecipeAction'
+import { saveRecipe } from '../actions/recipesAction'
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
 class RecipeForm extends Component {
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      ingredientsError: false
+      ingredientsError: false,
+      saveResult: "",
+      visible: false
     }
   }
 
@@ -23,24 +25,51 @@ class RecipeForm extends Component {
       ingredientsError: false
     })
   };
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk = (e) => {
+    this.setState({
+      visible: false,
+    });
+  }
+  handleCancel = (e) => {
+    this.setState({
+      visible: false,
+    });
+  }
 
- handleSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        if(this.props.temporaryRecipe.ingredients.length > 0){
+        if (this.props.temporaryRecipe.ingredients.length > 0) {
           let temporaryRecipe = this.props.temporaryRecipe;
           let recipe = {
             ...values,
             ingredients: temporaryRecipe.ingredients
           }
-            this.props.saveRecipe(recipe);
-        }else{
+          this.props.saveRecipe(recipe).then((result) => {
+            this.setState({
+              saveResult: result
+            })
+            this.props.form.resetFields();
+          }).catch((error) => {
+            this.setState({
+              saveResult: error
+            })
+          })
+          this.setState({
+            visible: true
+          })
+
+        } else {
           this.setState({
             ingredientsError: true
           })
         }
-       
       }
     });
   }
@@ -49,13 +78,12 @@ class RecipeForm extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        <h2>Recept information</h2>
         <Form onSubmit={this.handleSubmit}>
-          <FormItem style={{ padding: 1, margin: 1 }} label="Namn" >
+          <FormItem style={{ paddingBottom: 1, margin: 1 }} label="Namn" >
             {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Receptet måste ha ett namn' }],
             })(
-              <Input style={{ width: 300 }} prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+              <Input style={{ width: 300 }} />
             )}
           </FormItem>
           <FormItem style={{ padding: 1, margin: 1 }} label="Kategori" >
@@ -63,8 +91,9 @@ class RecipeForm extends Component {
               rules: [{ required: true, message: 'Ange kategori' }],
             })(
               <Select style={{ width: 150 }}>
-                <Option value="dinner">Dinner</Option>
+                <Option value="dinner">Middag</Option>
                 <Option value="dessert">Dessert</Option>
+                <Option value="snacks">Snacks</Option>
               </Select>
             )}
           </FormItem>
@@ -95,15 +124,22 @@ class RecipeForm extends Component {
             <Button type="primary" htmlType="submit">Skapa recept</Button>
           </FormItem>
         </Form>
-        {this.state.ingredientsError === true ? 
-                <Alert
-                message="Ett recept måste ha mins en ingrediens!"
-                type="warning"
-                closable
-                onClose={this.onClose}
-              />
-            : <p></p>
-      }
+        {this.state.ingredientsError === true ?
+          <Alert
+            message="Ett recept måste ha mins en ingrediens!"
+            type="warning"
+            closable
+            onClose={this.onClose}
+          />
+          : <p></p>
+        },
+                <Modal
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <h3>{this.state.saveResult}</h3>
+        </Modal>
 
       </div>
     )

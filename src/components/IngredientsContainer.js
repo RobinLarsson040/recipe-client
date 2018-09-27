@@ -1,48 +1,71 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { List,Table } from "antd";
-import {removeIngredient} from "../actions/temporaryRecipeAction"
+import { Card, Table } from "antd";
+import { removeIngredient } from "../actions/temporaryRecipeAction"
+import { calculateTotalNutritions } from "../utils/nutritionCalculator"
 
 const columns = [{
     title: 'Namn ',
     dataIndex: 'name',
     key: 'name'
-  },{
+}, {
     title: 'Antal ',
     dataIndex: 'units',
     key: 'units'
-  },{
+}, {
     title: 'Enhet ',
     dataIndex: 'measuringUnit',
     key: 'measuringUnit'
-  },
-  ,{
+},
+    , {
     title: 'Gram/Enhet ',
     dataIndex: 'unitEquivalentInGrams',
     key: 'unitEquivalentInGrams'
-  },]
+},]
 
 class IngredientsContainer extends Component {
 
     constructor(props) {
         super(props)
-        this.temporaryRecipe = {}
     }
 
+    totalNutritions = () => {
+        let nutritions = calculateTotalNutritions(this.props.temporaryRecipe.ingredients)
+
+        return Object.keys(nutritions).map((nutrition) => {
+            return (
+                <p key={nutrition}>
+                      {nutrition} :  {nutritions[nutrition]} gram
+                   
+                </p>
+            )
+        })
+
+    }
     render() {
         return (
             <div className="small-margin">
-            <h3>Ingredienser:</h3>
                 {this.props.temporaryRecipe.ingredients.length > 0 ? <Table rowKey={record => record.name} columns={columns} dataSource={this.props.temporaryRecipe.ingredients} size="small"
                     onRow={
                         (record) => {
-                        return {
-                            onClick: () => {
+                            return {
+                                onClick: () => {
+                                    this.props.removeIngredient(record)
+                                },
+                            };
+                        }} />
+                    : <p></p>
+                }
+                {this.props.temporaryRecipe.ingredients.length > 0 ?
+                        <Card
+                        title="Totalt näringsvärden"
+                        style={{ width: 300 }}
+                    >
+                        {this.totalNutritions()}
+                    </Card>
+              : <p></p> }
+        
 
-                                this.props.removeIngredient(record)
-                            },
-                        };
-                    }}  />: <p>Receptet har hitills inga ingredienser</p>}
             </div>
         )
     }
