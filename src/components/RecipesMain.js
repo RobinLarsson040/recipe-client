@@ -13,7 +13,7 @@ class Recipe extends Component {
         return (
             <div>
                 <h1 className="headline">Recept</h1>
-                <div className="flex-row content">
+                <div className="content">
                     <RecipeSearch />
                     <RecipeList />
                 </div>

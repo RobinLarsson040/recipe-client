@@ -46,6 +46,7 @@ class RecipeForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if (this.props.temporaryRecipe.ingredients.length > 0) {
+          console.log(values)
           let temporaryRecipe = this.props.temporaryRecipe;
           let recipe = {
             ...values,

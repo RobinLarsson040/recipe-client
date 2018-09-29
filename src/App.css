@@ -8,6 +8,14 @@
   background-color: rgb(232, 239, 241)
 }
 
+img {
+  display: block;
+  max-width:300px;
+  max-height:200px;
+  width: auto;
+  height: auto;
+}
+
 .myHeader {
   background-color: rgb(88, 176, 235)
 }
