@@ -36,7 +36,6 @@ class IngredientsContainer extends Component {
             return (
                 <p key={nutrition}>
                       {nutrition} :  {nutritions[nutrition]} gram
-                   
                 </p>
             )
         })
@@ -44,7 +43,7 @@ class IngredientsContainer extends Component {
     }
     render() {
         return (
-            <div className="small-margin">
+            <div className="section">
                 {this.props.temporaryRecipe.ingredients.length > 0 ? <Table rowKey={record => record.name} columns={columns} dataSource={this.props.temporaryRecipe.ingredients} size="small"
                     onRow={
                         (record) => {

@@ -12,7 +12,7 @@ class Recipe extends Component {
     render() {
         return (
             <div>
-                <h1 className="headline">Recept</h1>
+                <h1 className="headLine">Recept</h1>
                 <div className="content">
                     <RecipeSearch />
                     <RecipeList />

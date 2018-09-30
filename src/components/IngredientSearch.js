@@ -95,7 +95,8 @@ class IngredientSearch extends Component {
     const { selectedOption } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="section recipe-search">
+      <div className="section">
+        <h4>Sök ingrediens</h4>
         <Form onSubmit={this.handleSubmit}>
           <ReactSelect
             placeholder={"Sök ingrediens"}
@@ -109,7 +110,7 @@ class IngredientSearch extends Component {
               }
             })}
           />
-          {this.state.selectedOption ? <h3>{this.state.selectedOption}</h3> : <p></p>}
+          {this.state.selectedOption ? <p>{this.state.selectedOption}</p> : <p></p>}
           {this.state.ingredientsNameError === true ?
             <Alert
               message="Du måste söka efter en ingrediens först!"

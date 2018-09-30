@@ -4,9 +4,6 @@
  
 }
 
-.app {
-  background-color: rgb(232, 239, 241)
-}
 
 img {
   display: block;
@@ -16,13 +13,17 @@ img {
   height: auto;
 }
 
+.headLine {
+  text-align: center
+}
+
 .myHeader {
-  background-color: rgb(88, 176, 235)
+  background-color: rgb(134, 198, 238)
 }
 
 .section {
-  padding: 10px;
-  margin: 15px;
+  padding: 5px;
+  margin: 10px;
 }
 
 .flex-row{
@@ -30,26 +31,9 @@ img {
    flex-direction:row;
   }
 
-  .headline {
-    position: absolute;
-    top: 110px;
-    left: 40%;
-  }
-
-  .small-margin {
-    margin-top: 40px;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-
-  .recipe-search {
-    margin-top: 58px;
-  }
-
   .content {
     padding: 30px;
     margin: 40px;
-    background-color: white
   }
 
   .myFormItem.ant-FormItem {

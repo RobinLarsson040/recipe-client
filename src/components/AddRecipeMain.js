@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import IngrentSearch from './IngredientSearch'
-import Recipe from './Recipe'
+import RecipeForm from './RecipeForm';
+import IngredientSearch from './IngredientSearch';
+import RecipeAddInstructions from './RecipeAddInstructions';
+import IngredientsContainer from './IngredientsContainer';
+import InstructionsContainer from './InstructionsContainer';
+import {Container, Row, Col} from 'reactstrap';
 
 
 class AddRecipeMain extends Component {
@@ -12,13 +16,22 @@ class AddRecipeMain extends Component {
 
     render() {
         return (
-        <div>
-            <h1 className="headline">Nytt recept</h1>
-            <div className="flex-row content">
-                <Recipe />
-                <IngrentSearch />
+            <div>
+                <Container>
+                    <Row>
+                        <Col><h1 className = "headLine">Nytt recept</h1></Col>
+                    </Row>
+                    <Row>
+                        <Col><RecipeForm /></Col>
+                        <Col><IngredientSearch /></Col>
+                        <Col><RecipeAddInstructions /></Col>
+                    </Row>
+                    <Row>
+                        <Col><IngredientsContainer/></Col>
+                        <Col><InstructionsContainer/></Col>
+                    </Row>
+                </Container>
             </div>
-        </div>
         )
     }
 }

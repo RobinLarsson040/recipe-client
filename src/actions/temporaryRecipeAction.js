@@ -20,6 +20,13 @@ export let addInstruction = instruction => {
     };
 };
 
+export let removeInstruction = instruction => {
+    return {
+        type: "REMOVE_INSTRUCTION",
+        instruction
+    };
+};
+
 export let addFormValues = formValues => {
     return {
         type: "ADD_FORM_VALUES",

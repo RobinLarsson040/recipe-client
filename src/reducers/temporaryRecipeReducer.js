@@ -35,6 +35,11 @@ let temporaryRecipeReducer = (state = defaultTemporaryRecipeState, action) => {
         ...state,
         instructions: [...state.instructions, action.instruction]
       }
+      case "REMOVE_INSTRUCTION":
+      return {
+        ...state,
+        instructions: state.instructions.filter(instruction => instruction.value !== action.instruction.value)
+      }
       case "CLEAR_RECIPE":
       return defaultTemporaryRecipeState
     default:

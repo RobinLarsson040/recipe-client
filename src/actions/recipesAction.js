@@ -22,6 +22,7 @@ export let startGetRecipes = () => {
 
 
 export let saveRecipe = (recipe) => {
+    console.log(recipe)
     return dispatch => {
         return new Promise((resolve, reject) => {
             axios.post('http://localhost:3000/recipes', recipe)

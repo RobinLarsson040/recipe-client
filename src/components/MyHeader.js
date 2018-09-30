@@ -12,21 +12,17 @@ class MyHeader extends Component {
             <Header>
                 <div className="logo" />
                 <Menu
-                className= "myHeader"
+                    className="myHeader"
                     theme="dark"
                     mode="horizontal"
                     defaultSelectedKeys={['1']}
                     style={{ lineHeight: '64px' }}
                 >
                     <Menu.Item key="1">
-                        <Link to="/home">
-                        </Link>  Hem
-                    </Menu.Item>
-                    <Menu.Item key="2">
                         <Link to="/recipes">
                             Recept
                          </Link></Menu.Item>
-                    <Menu.Item key="3">
+                    <Menu.Item key="2">
                         <Link to="/addrecipe">
                             <Icon type="plus" />Nytt Recept
                          </Link>

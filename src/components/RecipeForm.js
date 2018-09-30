@@ -13,6 +13,7 @@ class RecipeForm extends Component {
 
   constructor(props) {
     super(props)
+    console.log(props)
     this.state = {
       ingredientsError: false,
       saveResult: "",
@@ -46,11 +47,12 @@ class RecipeForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if (this.props.temporaryRecipe.ingredients.length > 0) {
-          console.log(values)
+
           let temporaryRecipe = this.props.temporaryRecipe;
           let recipe = {
             ...values,
-            ingredients: temporaryRecipe.ingredients
+            ingredients: temporaryRecipe.ingredients,
+            instructions: temporaryRecipe.instructions
           }
           this.props.saveRecipe(recipe).then((result) => {
             this.setState({
@@ -78,7 +80,8 @@ class RecipeForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>
+      <div className="section">
+        <h4>Information</h4>
         <Form onSubmit={this.handleSubmit}>
           <FormItem style={{ paddingBottom: 1, margin: 1 }} label="Namn" >
             {getFieldDecorator('name', {
@@ -104,7 +107,7 @@ class RecipeForm extends Component {
             })(
               <TextArea onChange={this.onDescriptionChange}
                 style={{ width: 300 }}
-                autosize={{ minRows: 4, maxRows: 6 }} />
+                autosize={{ minRows: 3, maxRows: 5 }} />
             )}
           </FormItem>
           {<FormItem style={{ padding: 1, margin: 1 }} label="Antal personer" >

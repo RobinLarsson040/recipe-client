@@ -4,6 +4,7 @@ import recipeReducer from '../reducers/recipeReducer'
 import foundIngredientsReducer from '../reducers/foundIngredientsReducer'
 import temporaryRecipeReducer from '../reducers/temporaryRecipeReducer'
 import searchOptions from '../reducers/searchOptions'
+import clickedRecipeReducer from "../reducers/clickedRecipeReducer";
 
 export default () => {
   let store = createStore(
@@ -11,7 +12,8 @@ export default () => {
       recipes: recipeReducer,
       foundIngredients: foundIngredientsReducer,
       temporaryRecipe: temporaryRecipeReducer,
-      searchOptions: searchOptions
+      searchOptions: searchOptions,
+      clickedRecipe: clickedRecipeReducer
     }),
     applyMiddleware(thunk)
   );
