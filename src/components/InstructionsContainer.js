@@ -7,7 +7,8 @@ import { removeInstruction } from '../actions/temporaryRecipeAction'
 const columns = [{
     title: 'Instruktioner: ',
     dataIndex: 'value',
-    key: 'value'
+    key: 'value',
+    fixed: true
 }]
 
 

@@ -17,20 +17,20 @@ class AddRecipeMain extends Component {
     render() {
         return (
             <div>
-                <Container>
+                <Container-fluid>
                     <Row>
                         <Col><h1 className = "headLine">Nytt recept</h1></Col>
                     </Row>
                     <Row>
                         <Col><RecipeForm /></Col>
                         <Col><IngredientSearch /></Col>
-                        <Col><RecipeAddInstructions /></Col>
+                        <Col><IngredientsContainer /></Col>
                     </Row>
                     <Row>
-                        <Col><IngredientsContainer/></Col>
+                        <Col><RecipeAddInstructions/></Col>
                         <Col><InstructionsContainer/></Col>
                     </Row>
-                </Container>
+                </Container-fluid>
             </div>
         )
     }

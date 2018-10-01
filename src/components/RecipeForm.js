@@ -125,7 +125,7 @@ class RecipeForm extends Component {
             )}
           </FormItem>
           <FormItem>
-            <Button type="primary" htmlType="submit">Skapa recept</Button>
+            <Button disabled={!this.props.authenticated} type="primary" htmlType="submit">Skapa recept</Button>
           </FormItem>
         </Form>
         {this.state.ingredientsError === true ?
@@ -151,13 +151,15 @@ class RecipeForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  temporaryRecipe: state.temporaryRecipe
+  temporaryRecipe: state.temporaryRecipe,
+  authenticated: state.authenticated
 });
 
 const mapDispatchToProps = {
   getIngredientAutoComplete,
   addFormValues,
-  saveRecipe
+  saveRecipe,
+
 }
 
 const WrappedRecipeForm = Form.create({})(RecipeForm);

@@ -133,10 +133,15 @@ class IngredientSearch extends Component {
             })(
               <Select style={{ width: 150 }}>
                 <Option value="st">st</Option>
-                <Option value="liter">liter</Option>
-                <Option value="dl">dl</Option>
-                <Option value="cl">cl</Option>
+                <Option value="g">g</Option>
+                <Option value="hg">hg</Option>
+                <Option value="kg">kg</Option>
                 <Option value="ml">ml</Option>
+                <Option value="cl">cl</Option>
+                <Option value="dl">dl</Option>
+                <Option value="l">l</Option>
+                <Option value="tsk">tsk</Option>
+                <Option value="msk">msk</Option>
               </Select>
             )}
           </FormItem>

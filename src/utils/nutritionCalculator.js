@@ -8,7 +8,7 @@ export let calculateTotalNutritions = (ingredients) => {
         "Fett": 0.00,
         "Energi (kcal)": 0.00,
         "Salt": 0.00,
-        "Socker totalt": 0.00
+        "Socker totalt": 0.00,
     }
 
 

@@ -34,7 +34,6 @@ class RecipeList extends Component {
                     renderItem={item => (
                         <List.Item>
                             <Card
-
                                 cover={<img className="img" alt="example" src={item.imageUrl} />}
                                 actions={[<Icon type="info-circle" onClick={() => {
                                     this.props.setClickedRecipe(item);
@@ -45,7 +44,6 @@ class RecipeList extends Component {
                                 <Meta
                                     avatar={<Avatar src={this.setAvatar(item.category)} />}
                                     title={item.name}
-
                                 />
                                 <p>{item.description}</p>
                             </Card>
