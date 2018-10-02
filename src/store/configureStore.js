@@ -15,7 +15,7 @@ export default () => {
       temporaryRecipe: temporaryRecipeReducer,
       searchOptions: searchOptions,
       clickedRecipe: clickedRecipeReducer,
-      authenticated: authenticatedReducer
+      authenticated: authenticatedReducer,
     }),
     applyMiddleware(thunk)
   );

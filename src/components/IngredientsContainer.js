@@ -39,7 +39,7 @@ class IngredientsContainer extends Component {
         return Object.keys(nutritions).map((nutrition) => {
             return (
                 <p key={nutrition}>
-                      {nutrition} :  {parseFloat(nutritions[nutrition]).toFixed(2) } gram
+                      {nutrition} :  {parseFloat(nutritions[nutrition]).toFixed(2) } g
                 </p>
             )
         })
@@ -48,7 +48,7 @@ class IngredientsContainer extends Component {
     render() {
         return (
             <div className="section">
-                {this.props.temporaryRecipe.ingredients.length > 0 ? <Table rowKey={record => record.name} columns={columns} dataSource={this.props.temporaryRecipe.ingredients} size="small"
+                {this.props.temporaryRecipe.ingredients.length > 0 ? <Table className="bold" rowKey={record => record.name} columns={columns} dataSource={this.props.temporaryRecipe.ingredients} size="small"
                     onRow={
                         (record) => {
                             return {
@@ -61,6 +61,7 @@ class IngredientsContainer extends Component {
                 }
                 {this.props.temporaryRecipe.ingredients.length > 0 ?
                         <Card
+                        className="bold"
                         title="Totalt näringsvärden"
                         style={{ width: 300 }}
                     >

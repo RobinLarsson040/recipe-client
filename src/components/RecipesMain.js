@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import RecipeList from './RecipeList';
 import RecipeSearch from './RecipeSearch'
+import { Container, Row, Col } from 'reactstrap';
 
 class Recipe extends Component {
 
@@ -12,11 +13,15 @@ class Recipe extends Component {
     render() {
         return (
             <div>
-                <h1 className="headLine">Recept</h1>
-                <div className="content">
-                    <RecipeSearch />
-                    <RecipeList />
-                </div>
+                <Container-fluid>
+                    <Row>
+                        <Col><h1 className="headLine">Recept</h1></Col>
+                    </Row>
+                    <Row>
+                        <Col xs="2"><RecipeSearch/></Col>
+                        <Col xs="10"><RecipeList /></Col>
+                    </Row>
+                </Container-fluid>
             </div>
         )
     }

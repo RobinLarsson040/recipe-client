@@ -5,7 +5,9 @@ import IngredientSearch from './IngredientSearch';
 import RecipeAddInstructions from './RecipeAddInstructions';
 import IngredientsContainer from './IngredientsContainer';
 import InstructionsContainer from './InstructionsContainer';
-import {Container, Row, Col} from 'reactstrap';
+import TagsContainer from './TagsContainer';
+import RecipeAddTags from './RecipeAddTags';
+import { Container, Row, Col } from 'reactstrap';
 
 
 class AddRecipeMain extends Component {
@@ -17,20 +19,24 @@ class AddRecipeMain extends Component {
     render() {
         return (
             <div>
-                <Container-fluid>
+                <Container>
                     <Row>
-                        <Col><h1 className = "headLine">Nytt recept</h1></Col>
+                        <Col><h1 className="headLine">Nytt recept</h1></Col>
                     </Row>
                     <Row>
-                        <Col><RecipeForm /></Col>
-                        <Col><IngredientSearch /></Col>
-                        <Col><IngredientsContainer /></Col>
+                        <Col sm="4"><RecipeForm /></Col>
+                        <Col sm="3"><IngredientSearch /></Col>
+                        <Col sm="5"><IngredientsContainer /></Col>
                     </Row>
                     <Row>
-                        <Col><RecipeAddInstructions/></Col>
-                        <Col><InstructionsContainer/></Col>
+                        <Col><RecipeAddInstructions /></Col>
+                        <Col><InstructionsContainer /></Col>
                     </Row>
-                </Container-fluid>
+                    <Row>
+                        <Col><RecipeAddTags /></Col>
+                        <Col><TagsContainer /></Col>
+                    </Row>
+                </Container>
             </div>
         )
     }

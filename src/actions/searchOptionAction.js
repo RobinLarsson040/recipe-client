@@ -11,3 +11,17 @@ export let setName = name => {
         name
     };
 };
+
+export let setDescription = description => {
+    return {
+        type: "SET_DESCRIPTION",
+        description
+    };
+};
+
+export let setTag = tag => {
+    return {
+        type: "SET_TAG",
+        tag
+    };
+};

@@ -15,14 +15,26 @@ class RecipeDetailInfo extends Component {
         })
     }
 
+    renderTags = () => {
+        return this.props.clickedRecipe.tags.map((tag) => {
+            return (
+                <p className="bold" key={tag.value}>
+                   #{tag.value}
+                </p>
+            )
+        })
+    }
+
     render() {
         return (
             <div className="content">
-                <img src={this.props.clickedRecipe.imageUrl}></img>
+                <img className="imgDetail" src={this.props.clickedRecipe.imageUrl}></img>
                 <h3>Beskrivning:</h3>
                 <p>{this.props.clickedRecipe.description}</p>
                 <h3>Instruktioner:</h3>
                    {this.renderInstructions()}
+                   <h3>Taggar:</h3>
+                   {this.renderTags()}
             </div>
         )
     }

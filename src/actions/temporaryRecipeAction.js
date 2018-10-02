@@ -27,6 +27,20 @@ export let removeInstruction = instruction => {
     };
 };
 
+export let addTag = tag => {
+    return {
+        type: "ADD_TAG",
+        tag
+    };
+};
+
+export let removeTag = tag => {
+    return {
+        type: "REMOVE_TAG",
+        tag
+    };
+};
+
 export let addFormValues = formValues => {
     return {
         type: "ADD_FORM_VALUES",

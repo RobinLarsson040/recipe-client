@@ -22,30 +22,48 @@ class RecipeList extends Component {
             default:
         }
     }
+
     componentDidMount() {
         this.props.startGetRecipes();
     }
+
+    renderTags = (tags) => {
+        return tags.map((tag) => {
+            return (
+                <p className="bold" key={tag.value}>
+                    #{tag.value}
+                </p>
+            )
+        })
+    }
+
+
     render() {
         return (
             <div className="section">
                 <List
                     grid={{ gutter: 20, column: 3 }}
-                    dataSource={getVisisbleRecipes(this.props.recipes, this.props.searchOptions.category, this.props.searchOptions.name)}
+                    dataSource={getVisisbleRecipes(this.props.recipes, this.props.searchOptions.category, this.props.searchOptions.name,
+                        this.props.searchOptions.description, this.props.searchOptions.tag)}
                     renderItem={item => (
                         <List.Item>
                             <Card
                                 cover={<img className="img" alt="example" src={item.imageUrl} />}
+                                style={{ width: 300 }}
                                 actions={[<Icon type="info-circle" onClick={() => {
                                     this.props.setClickedRecipe(item);
                                     this.props.history.push("/recipeDetail");
                                 }} />]}
                                 description={item.description}
+
                             >
                                 <Meta
                                     avatar={<Avatar src={this.setAvatar(item.category)} />}
                                     title={item.name}
                                 />
                                 <p>{item.description}</p>
+                                <div className="flex-row">{this.renderTags(item.tags)}</div>
+
                             </Card>
                         </List.Item>
                     )}

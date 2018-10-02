@@ -12,6 +12,7 @@ let AppRouter = () => (
             <MyHeader/>
             <Switch>
                 <Route exact path="/addrecipe" component={AddRecipeMain} />
+                <Route exact path="/" component={RecipeMain} />
                 <Route exact path="/recipes" component={RecipeMain} />
                 <Route exact path="/recipeDetail" component={RecipeDetailMain} />
             </Switch>

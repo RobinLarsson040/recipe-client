@@ -64,7 +64,10 @@ class IngredientSearch extends Component {
           "Fett": 0,
           "Energi (kcal)": 0,
           "Salt": 0,
-          "Socker totalt": 0
+          "Socker totalt": 0,
+          "Summa mättade fettsyror": 0,
+          "Summa enkelomättade fettsyror": 0,
+          "Summa fleromättade fettsyror": 0
         }
         clickedIngredient.Naringsvarden.Naringsvarde.forEach((item) => {
           if (item.Namn in per100g) {
@@ -124,14 +127,14 @@ class IngredientSearch extends Component {
             {getFieldDecorator('units', {
               rules: [{ required: true, message: 'Ange antal, exempel 4' }],
             })(
-              <InputNumber min={1} style={{ width: 50 }} prefix={<Icon type="number" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+              <InputNumber min={1} style={{ width: 100 }} prefix={<Icon type="number" style={{ color: 'rgba(0,0,0,.25)' }} />} />
             )}
           </FormItem>
           <FormItem style={{ padding: 1, margin: 1 }} label="Enhet">
             {getFieldDecorator('measuringUnit', {
               rules: [{ required: true, message: 'Ange måttenhet, exempel st/liter/gram' }],
             })(
-              <Select style={{ width: 150 }}>
+              <Select style={{ width: 80   }}>
                 <Option value="st">st</Option>
                 <Option value="g">g</Option>
                 <Option value="hg">hg</Option>

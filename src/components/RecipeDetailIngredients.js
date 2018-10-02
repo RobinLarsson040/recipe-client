@@ -55,12 +55,14 @@ class RecipeDetailIngredients extends Component {
                     <Option value="6">6</Option>
                 </Select>
                 <Card
+                    className="bold"
                     title="Totalt näringsvärden"
                     style={{ width: 300 }}
                 >
                     {this.totalNutritions()}
                 </Card>
                 <Card
+                    className="bold"
                     title="Totalt antal ingredienser"
                     style={{ width: 300 }}
                 >

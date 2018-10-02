@@ -4,6 +4,7 @@ let defaultTemporaryRecipeState = {
   description: '',
   persons: 1,
   instructions: [],
+  tags: [],
   ingredients: [],
   totalNutritions: {},
   imgUrl: ''
@@ -39,6 +40,16 @@ let temporaryRecipeReducer = (state = defaultTemporaryRecipeState, action) => {
       return {
         ...state,
         instructions: state.instructions.filter(instruction => instruction.value !== action.instruction.value)
+      }
+      case "ADD_TAG":
+      return {
+        ...state,
+        tags: [...state.tags, action.tag]
+      }
+      case "REMOVE_TAG":
+      return {
+        ...state,
+        tags: state.tags.filter(tag => tag.value !== action.tag.value)
       }
       case "CLEAR_RECIPE":
       return defaultTemporaryRecipeState

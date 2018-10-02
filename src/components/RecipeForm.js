@@ -52,7 +52,8 @@ class RecipeForm extends Component {
           let recipe = {
             ...values,
             ingredients: temporaryRecipe.ingredients,
-            instructions: temporaryRecipe.instructions
+            instructions: temporaryRecipe.instructions,
+            tags: temporaryRecipe.tags
           }
           this.props.saveRecipe(recipe).then((result) => {
             this.setState({
@@ -96,8 +97,8 @@ class RecipeForm extends Component {
             })(
               <Select style={{ width: 150 }}>
                 <Option value="dinner">Middag</Option>
-                <Option value="dessert">Dessert</Option>
-                <Option value="snacks">Snacks</Option>
+                <Option value="dessert">Efterrätt</Option>
+                <Option value="snacks">Mellanmål</Option>
               </Select>
             )}
           </FormItem>

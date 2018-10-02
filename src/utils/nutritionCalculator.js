@@ -9,6 +9,9 @@ export let calculateTotalNutritions = (ingredients) => {
         "Energi (kcal)": 0.00,
         "Salt": 0.00,
         "Socker totalt": 0.00,
+        "Summa mättade fettsyror": 0.00,
+        "Summa enkelomättade fettsyror": 0.00,
+        "Summa fleromättade fettsyror": 0.00
     }
 
 

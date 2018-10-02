@@ -1,28 +1,28 @@
 import React, { Component } from 'react'
 import { Table } from "antd";
 import { connect } from 'react-redux'
-import { removeInstruction } from '../actions/temporaryRecipeAction'
+import { removeTag } from '../actions/temporaryRecipeAction'
 
 
 const columns = [{
-    title: 'Instruktioner: ',
+    title: 'taggar: ',
     dataIndex: 'value',
     key: 'value',
     fixed: true
 }]
 
 
-export class InstructionsContainer extends Component {
+export class TagsContainer extends Component {
 
     render() {
         return (
             <div className="section">
-                {this.props.temporaryRecipe.instructions.length > 0 ? <Table className="bold" rowKey={record => record.value}  columns={columns} dataSource={this.props.temporaryRecipe.instructions} size="small"
+                {this.props.temporaryRecipe.tags.length > 0 ? <Table className="bold" rowKey={record => record.value}  columns={columns} dataSource={this.props.temporaryRecipe.tags} size="small"
                     onRow={
                         (record) => {
                             return {
                                 onClick: () => {
-                                    this.props.removeInstruction(record)
+                                    this.props.removeTag(record)
                                 },
                             };
                         }} />
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    removeInstruction
+    removeTag
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InstructionsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(TagsContainer)
