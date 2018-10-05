@@ -19,14 +19,13 @@ class RecipeDetailIngredients extends Component {
         return Object.keys(nutritions).map((nutrition) => {
             return (
                 <p key={nutrition}>
-                    {nutrition} :  {parseFloat((nutritions[nutrition] / this.props.clickedRecipe.persons) * this.state.persons).toFixed(2)} gram
+                    {nutrition} :  {parseFloat((nutritions[nutrition] / this.props.clickedRecipe.persons) * this.state.persons).toFixed(2).replace('.', ',')} gram
                 </p>
             )
         })
     }
 
     totalIngredients = () => {
-        console.log(this.props.clickedRecipe.ingredients)
         return this.props.clickedRecipe.ingredients.map((ingredient) => {
             return (
                 <p key={ingredient.name}>

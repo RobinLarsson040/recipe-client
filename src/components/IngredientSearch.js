@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Input, Form, Button, InputNumber, Alert } from "antd";
-import { Select, Icon } from "antd";
+import { Form, Button, InputNumber, Alert, Select, Icon } from "antd";
 import { getIngredientAutoComplete, clearIngredients, getIngredientByName } from '../actions/foundIngredientsAction'
 import { addIngredient } from '../actions/temporaryRecipeAction'
 import { default as ReactSelect } from 'react-select';
@@ -123,18 +122,18 @@ class IngredientSearch extends Component {
             />
             : <p></p>
           }
-          <FormItem style={{ padding: 1, margin: 1 }} label="Antal" >
+          <FormItem className=" minimum-padding-margin" label="Antal" >
             {getFieldDecorator('units', {
               rules: [{ required: true, message: 'Ange antal, exempel 4' }],
             })(
-              <InputNumber min={1} style={{ width: 100 }} prefix={<Icon type="number" style={{ color: 'rgba(0,0,0,.25)' }} />} />
+              <InputNumber className="small-width" min={0}/>
             )}
           </FormItem>
-          <FormItem style={{ padding: 1, margin: 1 }} label="Enhet">
+          <FormItem className=" minimum-padding-margin" label="Enhet">
             {getFieldDecorator('measuringUnit', {
               rules: [{ required: true, message: 'Ange måttenhet, exempel st/liter/gram' }],
             })(
-              <Select style={{ width: 80   }}>
+              <Select style={{ width: 80 }}>
                 <Option value="st">st</Option>
                 <Option value="g">g</Option>
                 <Option value="hg">hg</Option>
@@ -148,14 +147,14 @@ class IngredientSearch extends Component {
               </Select>
             )}
           </FormItem>
-          <FormItem style={{ padding: 1, margin: 1 }} label="Gram/enhet">
+          <FormItem className=" minimum-padding-margin" label="Gram/enhet">
             {getFieldDecorator('unitEquivalentInGrams', {
               rules: [{ required: true, message: 'Ange hur många gram varje enhet väger' }],
             })(
               <InputNumber min={1} style={{ width: 80 }} />
             )}
           </FormItem>
-          <FormItem style={{ padding: 1, margin: 1 }}>
+          <FormItem className=" minimum-padding-margin">
             <Button type="primary" htmlType="submit">Lägg till ingrediens</Button>
           </FormItem>
         </Form>

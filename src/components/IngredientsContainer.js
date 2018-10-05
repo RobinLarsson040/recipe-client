@@ -7,24 +7,20 @@ import { calculateTotalNutritions } from "../utils/nutritionCalculator"
 const columns = [{
     title: 'Namn ',
     dataIndex: 'name',
-    key: 'name',
-    className: 'column'
+    key: 'name'
 }, {
     title: 'Antal ',
     dataIndex: 'units',
-    key: 'units',
-    className: 'column'
+    key: 'units'
 }, {
     title: 'Enhet ',
     dataIndex: 'measuringUnit',
-    key: 'measuringUnit',
-    className: 'column'
+    key: 'measuringUnit'
 },
     , {
     title: 'Gram/Enhet ',
     dataIndex: 'unitEquivalentInGrams',
-    key: 'unitEquivalentInGrams',
-    className: 'column'
+    key: 'unitEquivalentInGrams'
 },]
 
 class IngredientsContainer extends Component {
@@ -39,7 +35,7 @@ class IngredientsContainer extends Component {
         return Object.keys(nutritions).map((nutrition) => {
             return (
                 <p key={nutrition}>
-                      {nutrition} :  {parseFloat(nutritions[nutrition]).toFixed(2) } g
+                      {nutrition} :  {parseFloat(nutritions[nutrition]).toFixed(2).replace('.', ',') } g
                 </p>
             )
         })
@@ -61,9 +57,8 @@ class IngredientsContainer extends Component {
                 }
                 {this.props.temporaryRecipe.ingredients.length > 0 ?
                         <Card
-                        className="bold"
+                        className="bold standard-width"
                         title="Totalt näringsvärden"
-                        style={{ width: 300 }}
                     >
                         {this.totalNutritions()}
                     </Card>

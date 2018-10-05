@@ -26,9 +26,7 @@ class MyHeader extends Component {
 
     handleOk = (e) => {
         this.props.login({ username: this.state.username, password: this.state.password }).then((result) => {
-            console.log(result)
         }).catch((error) => {
-            console.log(error)
         })
         this.setState({
             visible: false,

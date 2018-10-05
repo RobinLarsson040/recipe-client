@@ -42,14 +42,5 @@ class AddRecipeMain extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
 
-});
-
-
-const mapDispatchToProps = {
-
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddRecipeMain)
+export default AddRecipeMain

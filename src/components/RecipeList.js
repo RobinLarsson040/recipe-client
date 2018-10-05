@@ -49,7 +49,7 @@ class RecipeList extends Component {
                         <List.Item>
                             <Card
                                 cover={<img className="img" alt="example" src={item.imageUrl} />}
-                                style={{ width: 300 }}
+                                style={{ width: 280 }}
                                 actions={[<Icon type="info-circle" onClick={() => {
                                     this.props.setClickedRecipe(item);
                                     this.props.history.push("/recipeDetail");
