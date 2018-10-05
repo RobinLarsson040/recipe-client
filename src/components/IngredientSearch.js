@@ -84,7 +84,6 @@ class IngredientSearch extends Component {
         })
         this.props.form.resetFields();
       }).catch((error) => {
-        console.log(error)
       })
     } else {
       this.setState({

@@ -10,10 +10,6 @@ let store = configureStore();
 
 startGetRecipes();
 
-store.subscribe(()=>{
-  console.log(store.getState())
-})
-
 let jsx = (
   <Provider store={store}>
     <AppRouter />

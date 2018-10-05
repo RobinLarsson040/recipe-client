@@ -21,7 +21,6 @@ export let getIngredientAutoComplete = (text) => {
                 dispatch(setIngredients(response.data.result));
             })
             .catch(function (error) {
-                console.log(error);
             })
     };
 };

@@ -15,14 +15,12 @@ export let startGetRecipes = () => {
                 dispatch(getRecipes(response.data.result));
             })
             .catch(function (error) {
-                console.log(error);
             })
     };
 };
 
 
 export let saveRecipe = (recipe) => {
-    console.log(recipe)
     return dispatch => {
         return new Promise((resolve, reject) => {
             axios.post('http://localhost:3000/recipes', recipe)
@@ -36,7 +34,6 @@ export let saveRecipe = (recipe) => {
                     }
                 })
                 .catch(function (error) {
-                    console.log(error);
                 })
         })
     };

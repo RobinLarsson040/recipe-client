@@ -9,7 +9,6 @@ class RecipeAddTags extends Component {
 
     constructor(props) {
         super(props)
-        console.log(props)
         this.state = { value: '' };
 
         this.handleChange = this.handleChange.bind(this);
@@ -22,7 +21,7 @@ class RecipeAddTags extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        if (this.state.value.length > 2 && this.state.value.length < 21) {
+        if (this.state.value.length > 1 && this.state.value.length < 21) {
             this.props.addTag({ value: this.state.value })
             this.setState({
                 value: ''

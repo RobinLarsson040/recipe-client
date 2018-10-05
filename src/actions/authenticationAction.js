@@ -9,7 +9,6 @@ export let setAuthentication = authenticated => {
 
 
 export let login = (user) => {
-    console.log(user)
     return dispatch => {
         return new Promise((resolve, reject) => {
             axios.post('http://localhost:3000/login', user)
@@ -23,7 +22,6 @@ export let login = (user) => {
                     }
                 })
                 .catch(function (error) {
-                    console.log(error);
                 })
         })
     }

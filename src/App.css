@@ -13,13 +13,22 @@ word-break: normal;
 font-weight: bold
 }
 
+.standard-width {
+  width: 300;
+}
 
+.small-width {
+  width: 100;
+}
+
+.minimum-padding-margin {
+  padding: 1;
+  margin: 1;
+}
 
 .ant-table table {
 font-weight: bold
 }
-
-
 
 img {
   display: block;

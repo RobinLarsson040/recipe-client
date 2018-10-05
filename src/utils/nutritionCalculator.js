@@ -28,14 +28,11 @@ export let calculateTotalNutritions = (ingredients) => {
                 let calculatedValue = (parsedNutrition * gramUnit * units) / 100;
 
                 let finalValueFixedDecimals = Math.round(calculatedValue * 100) / 100
-                console.log('finalValue',nutrition + " " +finalValueFixedDecimals)
 
                 totalNutrition[nutrition] += finalValueFixedDecimals;
             }
         }
     })
-
-    console.log(totalNutrition)
 
     return totalNutrition
 }

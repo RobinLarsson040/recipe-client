@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import RecipeForm from './RecipeForm';
 import IngredientSearch from './IngredientSearch';
 import RecipeAddInstructions from './RecipeAddInstructions';
@@ -41,6 +40,4 @@ class AddRecipeMain extends Component {
         )
     }
 }
-
-
 export default AddRecipeMain
